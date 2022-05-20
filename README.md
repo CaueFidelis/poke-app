@@ -1,8 +1,14 @@
-<h1 align='center'>
+<div align='center'>
   <img alt='Logo PokeApp' src='./github/logoBravi.png' style='margin: 0 auto'/>
-
+</div>
+  
+<div align='center'>
   <img alt='Logo PokeApp' src='./assets/logo.png' style='margin: 0 auto'/>
+</div>
+<h1 align='center'>
+  PokeApp!
 </h1>
+
 <p align="center">Repositório do Teste Técnico em React Native da Bravi</p>
 
 ### Acesso Rápido
