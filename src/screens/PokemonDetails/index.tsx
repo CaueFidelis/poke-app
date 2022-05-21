@@ -1,13 +1,14 @@
-import { useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Image, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Container, Title } from '../../globalStyles';
 import imageNoPicture from '../../../assets/no-picture.png';
+import { propsNavigationStack } from '../../routes/models';
 
 export default function PokemonDetails() {
-  const route = useRoute();
+  const route = useRoute<RouteProp<propsNavigationStack, 'PokemonDetails'>>();
   const [pokemonDetails, setPokemonDetails] = useState({
     id: 0,
     name: '',
@@ -25,7 +26,7 @@ export default function PokemonDetails() {
   });
 
   async function loadPokemonInfo() {
-    const response = await axios.get(`${route.params.url}`);
+    const response = await axios.get(`${route?.params?.url}`);
 
     // Filter arrays Types and Abilities
     const pokemonTypes = [
@@ -33,18 +34,14 @@ export default function PokemonDetails() {
       response.data.types[1] !== undefined
         ? response.data.types[1].type.name
         : '',
-    ].filter((i) => {
-      return i;
-    });
+    ].filter((i) => i);
 
     const pokemonAbilties = [
       response.data.abilities[0].ability.name,
       response.data.abilities[1] !== undefined
         ? response.data.abilities[1].ability.name
         : '',
-    ].filter((i) => {
-      return i;
-    });
+    ].filter((i) => i);
 
     setPokemonDetails({
       id: response.data.id,
@@ -64,6 +61,7 @@ export default function PokemonDetails() {
   }
 
   useEffect(() => {
+    console.log(route);
     loadPokemonInfo();
   }, []);
 

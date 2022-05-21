@@ -11,9 +11,10 @@ import {
   PokemonName,
   PokemonTypes,
 } from './styles';
+import { propsStack } from '../../routes/models';
 
 export function CardPokemon({ name, url }: APIParams) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<propsStack>();
   const [pokemonInfo, setPokemonInfo] = useState({
     id: 0,
     name: '',
@@ -44,8 +45,8 @@ export function CardPokemon({ name, url }: APIParams) {
   return (
     <ContainerCard
       onPress={() =>
-        navigation.navigate('Pokemon Details', {
-          url: url,
+        navigation.navigate('PokemonDetails', {
+          url,
         })
       }
     >
