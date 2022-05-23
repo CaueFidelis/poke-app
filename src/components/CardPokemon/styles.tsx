@@ -31,15 +31,15 @@ export const ContainerRightCard = styled.View`
 `;
 
 export const PokemonName = styled.Text`
-  font-size: ${RFValue(24)};
+  font-size: ${RFValue(24)}px;
   text-transform: uppercase;
   font-weight: bold;
-  margin-right: 10;
+  margin-right: 10px;
 `;
 
 export const PokemonTypes = styled.Text`
-  font-size: ${RFValue(14)};
+  font-size: ${RFValue(14)}px;
   text-transform: uppercase;
   font-weight: bold;
-  margin-top: 5;
+  margin-top: 5px;
 `;

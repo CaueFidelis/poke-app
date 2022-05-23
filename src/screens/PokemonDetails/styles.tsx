@@ -14,7 +14,7 @@ export const SideInfoPokemon = styled.View`
 `;
 
 export const PokemonStatus = styled.Text`
-  font-size: ${RFValue(16)};
+  font-size: ${RFValue(16)}px;
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 20px;
