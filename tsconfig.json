@@ -1,5 +1,4 @@
 {
-  "include": ["src/global.d.ts"],
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true

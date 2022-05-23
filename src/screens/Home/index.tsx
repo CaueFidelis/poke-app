@@ -13,7 +13,7 @@ export interface APIParams {
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const baseURL = 'https://pokeapi.co/api/v2/pokemon';
-  const [initialData, setInitialData] = useState([]);
+  const [initialData, setInitialData] = useState<APIParams[]>([]);
   const [offset, setOffset] = useState(0);
 
   async function loadPokemonList() {

@@ -27,7 +27,7 @@ export function CardPokemon({ name, url }: APIParams) {
     setPokemonInfo({
       id: response.data.id,
       name: response.data.name,
-      types: response.data.types.map((data) => data.type.name),
+      types: response.data.types.map((data: any) => data.type.name),
       srcImage: response.data.sprites.other.home.front_default,
     });
   }

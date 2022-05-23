@@ -32,8 +32,8 @@ export default function PokemonDetails() {
       id: response.data.id,
       name: response.data.name,
       srcImage: response.data.sprites.other.home.front_default,
-      types: response.data.types.map((data) => data.type.name),
-      abilities: response.data.abilities.map((data) => data.ability.name),
+      types: response.data.types.map((data: any) => data.type.name),
+      abilities: response.data.abilities.map((data: any) => data.ability.name),
       stats: {
         hp: response.data.stats[0].base_stat,
         attack: response.data.stats[1].base_stat,
