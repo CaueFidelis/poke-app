@@ -1,13 +1,14 @@
-import { useRoute } from '@react-navigation/native';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Image, Text } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { Image } from 'react-native';
+import axios from 'axios';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { Container, Title } from '../../globalStyles';
 import imageNoPicture from '../../../assets/no-picture.png';
+import { propsNavigationStack } from '../../routes/models';
+import { ContainerInfoPokemon, PokemonStatus, SideInfoPokemon } from './styles';
 
 export default function PokemonDetails() {
-  const route = useRoute();
+  const route = useRoute<RouteProp<propsNavigationStack, 'PokemonDetails'>>();
   const [pokemonDetails, setPokemonDetails] = useState({
     id: 0,
     name: '',
@@ -25,33 +26,14 @@ export default function PokemonDetails() {
   });
 
   async function loadPokemonInfo() {
-    const response = await axios.get(`${route.params.url}`);
-
-    // Filter arrays Types and Abilities
-    const pokemonTypes = [
-      response.data.types[0].type.name,
-      response.data.types[1] !== undefined
-        ? response.data.types[1].type.name
-        : '',
-    ].filter((i) => {
-      return i;
-    });
-
-    const pokemonAbilties = [
-      response.data.abilities[0].ability.name,
-      response.data.abilities[1] !== undefined
-        ? response.data.abilities[1].ability.name
-        : '',
-    ].filter((i) => {
-      return i;
-    });
+    const response = await axios.get(`${route?.params?.url}`);
 
     setPokemonDetails({
       id: response.data.id,
       name: response.data.name,
       srcImage: response.data.sprites.other.home.front_default,
-      types: pokemonTypes,
-      abilities: pokemonAbilties,
+      types: response.data.types.map((data: any) => data.type.name),
+      abilities: response.data.abilities.map((data: any) => data.ability.name),
       stats: {
         hp: response.data.stats[0].base_stat,
         attack: response.data.stats[1].base_stat,
@@ -69,95 +51,47 @@ export default function PokemonDetails() {
 
   return (
     <Container>
-      <Title>Pokemon Details</Title>
+      <Title>{route.params?.name}</Title>
       <Image
-        style={{ width: 110, height: 110 }}
+        style={{ width: 170, height: 170, marginBottom: 30 }}
         source={
           pokemonDetails.srcImage !== ''
             ? { uri: `${pokemonDetails.srcImage}` }
             : imageNoPicture
         }
       />
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Types: {pokemonDetails.types.join(' & ')}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Abilities (Just Two): {pokemonDetails.abilities.join(' & ')}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        HP: {pokemonDetails.stats.hp}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Speed: {pokemonDetails.stats.speed}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Defense: {pokemonDetails.stats.defense}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Attack: {pokemonDetails.stats.attack}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Special-Defense: {pokemonDetails.stats.specialDefense}
-      </Text>
-      <Text
-        style={{
-          fontSize: RFValue(16),
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          marginTop: 5,
-        }}
-      >
-        Special-Attack: {pokemonDetails.stats.specialAttack}
-      </Text>
+
+      <ContainerInfoPokemon>
+        <SideInfoPokemon>
+          <PokemonStatus>
+            Types: {'\n'} {pokemonDetails.types.join(' & ')}
+          </PokemonStatus>
+          <PokemonStatus>
+            HP: {'\n'} {pokemonDetails.stats.hp}
+          </PokemonStatus>
+          <PokemonStatus>
+            Defense: {'\n'} {pokemonDetails.stats.defense}
+          </PokemonStatus>
+          <PokemonStatus>
+            Special-Defense: {'\n'}
+            {pokemonDetails.stats.specialDefense}
+          </PokemonStatus>
+        </SideInfoPokemon>
+        <SideInfoPokemon>
+          <PokemonStatus>
+            Abilities: {'\n'} {pokemonDetails.abilities.join(' & ')}
+          </PokemonStatus>
+          <PokemonStatus>
+            Speed: {'\n'} {pokemonDetails.stats.speed}
+          </PokemonStatus>
+          <PokemonStatus>
+            Attack: {'\n'} {pokemonDetails.stats.attack}
+          </PokemonStatus>
+          <PokemonStatus>
+            Special-Attack: {'\n'} {pokemonDetails.stats.specialAttack}
+          </PokemonStatus>
+        </SideInfoPokemon>
+      </ContainerInfoPokemon>
     </Container>
   );
 }

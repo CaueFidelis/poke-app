@@ -1,8 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { APIParams } from '../../screens/Home';
 import imageNoPicture from '../../../assets/no-picture.png';
 import {
@@ -13,9 +11,10 @@ import {
   PokemonName,
   PokemonTypes,
 } from './styles';
+import { propsStack } from '../../routes/models';
 
 export function CardPokemon({ name, url }: APIParams) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<propsStack>();
   const [pokemonInfo, setPokemonInfo] = useState({
     id: 0,
     name: '',
@@ -25,18 +24,10 @@ export function CardPokemon({ name, url }: APIParams) {
 
   async function loadPokemonInfo() {
     const response = await axios.get(`${url}`);
-    let pokemonTypes = [
-      response.data.types[0].type.name,
-      response.data.types[1] !== undefined
-        ? response.data.types[1].type.name
-        : '',
-    ].filter(function (i) {
-      return i;
-    });
     setPokemonInfo({
       id: response.data.id,
       name: response.data.name,
-      types: pokemonTypes,
+      types: response.data.types.map((data: any) => data.type.name),
       srcImage: response.data.sprites.other.home.front_default,
     });
   }
@@ -48,8 +39,9 @@ export function CardPokemon({ name, url }: APIParams) {
   return (
     <ContainerCard
       onPress={() =>
-        navigation.navigate('Pokemon Details', {
-          url: url,
+        navigation.navigate('PokemonDetails', {
+          name,
+          url,
         })
       }
     >
