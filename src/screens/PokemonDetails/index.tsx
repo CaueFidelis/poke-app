@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import axios from 'axios';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { Container, Title } from '../../globalStyles';
 import imageNoPicture from '../../../assets/no-picture.png';
 import { propsNavigationStack } from '../../routes/models';
@@ -64,87 +63,31 @@ export default function PokemonDetails() {
 
       <ContainerInfoPokemon>
         <SideInfoPokemon>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Types: {'\n'} {pokemonDetails.types.join(' & ')}
           </PokemonStatus>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             HP: {'\n'} {pokemonDetails.stats.hp}
           </PokemonStatus>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Defense: {'\n'} {pokemonDetails.stats.defense}
           </PokemonStatus>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Special-Defense: {'\n'}
             {pokemonDetails.stats.specialDefense}
           </PokemonStatus>
         </SideInfoPokemon>
         <SideInfoPokemon>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Abilities: {'\n'} {pokemonDetails.abilities.join(' & ')}
           </PokemonStatus>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Speed: {'\n'} {pokemonDetails.stats.speed}
           </PokemonStatus>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Attack: {'\n'} {pokemonDetails.stats.attack}
           </PokemonStatus>
-          <PokemonStatus
-            style={{
-              fontSize: RFValue(16),
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              marginTop: 5,
-            }}
-          >
+          <PokemonStatus>
             Special-Attack: {'\n'} {pokemonDetails.stats.specialAttack}
           </PokemonStatus>
         </SideInfoPokemon>
