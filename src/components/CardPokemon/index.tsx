@@ -24,16 +24,10 @@ export function CardPokemon({ name, url }: APIParams) {
 
   async function loadPokemonInfo() {
     const response = await axios.get(`${url}`);
-    const pokemonTypes = [
-      response.data.types[0].type.name,
-      response.data.types[1] !== undefined
-        ? response.data.types[1].type.name
-        : '',
-    ].filter((i) => i);
     setPokemonInfo({
       id: response.data.id,
       name: response.data.name,
-      types: pokemonTypes,
+      types: response.data.types.map((data) => data.type.name),
       srcImage: response.data.sprites.other.home.front_default,
     });
   }
@@ -46,6 +40,7 @@ export function CardPokemon({ name, url }: APIParams) {
     <ContainerCard
       onPress={() =>
         navigation.navigate('PokemonDetails', {
+          name,
           url,
         })
       }
