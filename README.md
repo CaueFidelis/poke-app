@@ -65,10 +65,10 @@ Além disto é bom ter um editor para trabalhar com o código como o [VSCode](ht
 
 ```bash
   # Clone este repositório
-  $ git clone https://github.com/CaueFidelis/bravi-challenge.git
+  $ git clone https://github.com/CaueFidelis/poke-app.git
 
   # Acesse a pasta do projeto no terminal/cmd
-  $ cd bravi-challenge
+  $ cd poke-app
 
   # Instale as dependências
   $ yarn
