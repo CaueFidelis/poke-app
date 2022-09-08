@@ -1,15 +1,11 @@
 <div align='center'>
-  <img alt='Logo PokeApp' src='./github/logoBravi.png' style='margin: 0 auto'/>
-</div>
-  
-<div align='center'>
   <img alt='Logo PokeApp' src='./assets/logo.png' style='margin: 0 auto'/>
 </div>
 <h1 align='center'>
   PokeApp!
 </h1>
 
-<p align="center">Repositório do Teste Técnico em React Native da Bravi</p>
+<p align="center">Repositório de um aplicativo Pokedex com a PokeAPI, desenvolvido em React Native</p>
 
 ### Acesso Rápido
 
